@@ -39,21 +39,58 @@
         #header2 {
             font-weight: bold;
         }
+
+        .sm {
+            font-size: 10px;
+        }
+
+        .amount-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .amount-container label {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .amount-container input {
+            width: 100px;
+        }
     </style>
+
+    <script>
+        console.log("Hello world from js console");
+        var abc = "Education";
+        console.log("The value of abc is ..", abc);
+        var abc;
+        console.log("The value of abc is still..", abc);
+
+        var first_name = "";
+        function validateForm() {
+            first_name = document.getElementById("first_name").value;
+            console.log("first name is...", first_name);
+            var line = "Hello " + first_name;
+            alert(line);
+        }
+
+    </script>
 </head>
 
 <body>
     <div class="container">
         <p id="header1"><span style="color:red">*</span> -Denotes Required Information</p>
         <p> <span id="header2">> 1 Donation</span> <span> > 2 Confirmation</span> <span> > 3 Thank You</span></s></p>
-        <form>
+        <form action="" onsubmit="validateForm()" method="get">
             <table>
                 <tr>
                     <td class="right-alignment">First Name <span style="color:red">*</span></td>
-                    <td><input type="" placeholder="Enter Your name" /></td>
+                    <td><input type="text" placeholder="Enter Your name" id="first_name" /></td>
                 </tr>
                 <tr>
-                    <td class="right-alignment">Last Name <span style="color:red">*</span></td>
+                    <td class="right-alignment" name="last_name">Last Name <span style="color:red">*</span></td>
                     <td><input type="" placeholder="Enter Your name" /></td>
                 </tr>
                 <tr>
@@ -101,6 +138,23 @@
                         <input type="checkbox" /> OOP1
                     </td>
                 </tr>
+                <tr>
+                    <td class="sm">
+                        (Check a buttom or type in your amount)
+                    </td>
+                    <td>
+                        <div class="amount-container">
+                            <label class="right-alignment">Other Amount $</label>
+                            <input type="text" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+
             </table>
         </form>
     </div>
