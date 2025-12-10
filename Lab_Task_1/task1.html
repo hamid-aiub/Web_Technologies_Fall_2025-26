@@ -67,13 +67,13 @@
         console.log("The value of abc is ..", abc);
         var abc;
         console.log("The value of abc is still..", abc);
+        abc = "BUET";
+        console.log("See, now the value has changed..", abc);
 
-        var first_name = "";
-        function validateForm() {
-            first_name = document.getElementById("first_name").value;
-            console.log("first name is...", first_name);
-            var line = "Hello " + first_name;
-            alert(line);
+
+        function enableClickMessage() {
+            var click = document.getElementById("click");
+            click.innerHTML = "See, this line comes after clicking the button...";
         }
 
     </script>
@@ -83,11 +83,12 @@
     <div class="container">
         <p id="header1"><span style="color:red">*</span> -Denotes Required Information</p>
         <p> <span id="header2">> 1 Donation</span> <span> > 2 Confirmation</span> <span> > 3 Thank You</span></s></p>
-        <form action="" onsubmit="validateForm()" method="get">
+        <form id="abc" method="get">
             <table>
                 <tr>
                     <td class="right-alignment">First Name <span style="color:red">*</span></td>
                     <td><input type="text" placeholder="Enter Your name" id="first_name" /></td>
+                    <p id="fname_err"></p>
                 </tr>
                 <tr>
                     <td class="right-alignment" name="last_name">Last Name <span style="color:red">*</span></td>
@@ -150,15 +151,41 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <button type="submit">Submit</button>
+                    <td colspan="2">
+                        <div class="button-container">
+                            <button type="submit" onclick="validateForm()">Submit Form</button>
+                            <button type="button" onclick="enableClickMessage()">Show Message</button>
+                        </div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td colspan="3">
+                        <p id="click">Initial Value....</p>
+                    </td>
+                </tr>
+
 
             </table>
         </form>
     </div>
 
+    <script>
+        var first_name = "";
+        function validateForm(event) {
+            if (event) {
+                event.preventDefault();
+            }
+            first_name = document.getElementById("first_name").value;
+            console.log("first name is...", first_name);
+            var line = "Hello " + first_name;
+            if (!first_name || first_name == "") {
+                nameElement = document.getElementById("fname_err");
+                nameElement.innerHTML = "First Name is required";
+            }
+
+        }
+    </script>
 </body>
 
 </html>
