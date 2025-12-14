@@ -2,11 +2,11 @@
 
 echo "Hi, Here we will show form data..<br>";
 
-$Email = $_REQUEST["email"];
-$Password = $_REQUEST["password"];
+// $Email = $_REQUEST["email"];
+// $Password = $_REQUEST["password"];
 
-echo "You have entered email : $Email<br>";
-echo "You have entered password : $Password<br>";
+// echo "You have entered email : $Email<br>";
+// echo "You have entered password : $Password<br>";
 ?>
 
 <html>
@@ -15,7 +15,7 @@ echo "You have entered password : $Password<br>";
 </head>
 <body>
 
-<form method="get" onsubmit="return handleValidation()" action="">
+<form method="post" onsubmit="return handleValidation()" action="">
     <table>
         <tr>
             <td>Email</td>
