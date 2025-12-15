@@ -1,15 +1,21 @@
 <?php
 session_start();
-// $isLoggedIn = false;
+$isLoggedIn = false;
 
-// $isLoggedIn = $_SESSION["isLoggedIn"];
+$isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
 
-// if($isLoggedIn){
-//     Header("Location: ./dashboard.php");
-// }
+if($isLoggedIn){
+    Header("Location: ./dashboard.php");
+}
 
-session_destroy();
-echo "test";
+
+$previousValues = $_SESSION["previousValues"] ?? [];
+
+
+$errors = $_SESSION["errors"] ?? [];
+
+unset($_SESSION['errors']);
+unset($_SESSION['previousValues']);
 ?>
 
 <html>
@@ -21,13 +27,17 @@ echo "test";
                 <td>
                     Email
                 </td>
-                <td><input type="text" id="email" name="email"/> </td>
+                <td><input type="text" id="email" name="email" value="<?php echo $previousValues['email'] ?? '' ?>"/> </td>
+                <td><?php echo $errors["email"] ?? ''; ?></td>
             </tr>
 
             <tr>
                 <td>Password</td>
             <td><input type="password" id="password" name="password"/> </td>
-            </tr>
+           <td><?php echo $errors["password"] ?? ''; ?></td>
+        </tr>
+        <tr>
+        </tr>
 
             <tr>
 
