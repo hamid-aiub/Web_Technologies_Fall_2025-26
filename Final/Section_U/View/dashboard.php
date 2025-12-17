@@ -7,6 +7,7 @@ if(!$isLoggedIn){
 }
 $email = $_SESSION["email"] ??"";
 
+setcookie("webtech_section_u", "Theory", time()+3600);
 ?>
 <html>
 
