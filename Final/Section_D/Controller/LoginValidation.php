@@ -1,16 +1,19 @@
-
-
 <?php
+include "../Model/DatabaseConnection.php";
+
+
+error_reporting(E_ALL);
+ini_set("display_error", 1);
+
 session_start();
 $email = "";
-$password = "";
+$pass = "";
 
-if(isset($_REQUEST["login"])){
-    $email = $_REQUEST["email"];
-    $pass = $_REQUEST["password"];
-    echo "Email - $email";
-    echo "password - $pass";
-}
+$email = $_POST["email"];
+$pass = $_POST["password"];
+// echo "Email - $email";
+// echo "password - $pass";
+
 
 $errors = [];
 $previousValues = [];
@@ -20,12 +23,11 @@ $errors["email"] = "Email field is required";
 if(!$pass){
     $errors["password"] = "Password field is required";
 }
-if(count($errors) > 0){
-    $_SESSION["errors"] = $errors;
+if(count($errors) > 0){ 
     if(!$email){
-        $_SESSION["emailError"] = $errors["email"];
+        $_SESSION["emailError"] = $errors["email"]; // store in session
     }else{
-        unset($_SESSION["emailError"]);
+        unset($_SESSION["emailError"]); //remove from session
     }
 
     if(!$pass){
@@ -41,10 +43,22 @@ if(count($errors) > 0){
     Header("Location: ..\View\login.php");
 
 }else{
-$_SESSION["isLoggedIn"] = true;
-$_SESSION["email"] = $email;
+    //Validation Success
+    $db = new DatabaseConnection();
+    $connection = $db->openConnection();
+    $result = $db->signin($connection, "users", $email, $pass);
 
-Header("Location: ..\View\dashboard.php");
+    if($result->num_rows > 0){
+        $_SESSION["isLoggedIn"] = true;
+        $_SESSION["email"] = $email;
+
+        Header("Location: ..\View\dashboard.php");
+    }else{
+        $_SESSION["loginErr"] = "Email or Password is incorrect";
+        Header("Location: ..\View\login.php");
+    }
+
+    
 }
 ?>
 

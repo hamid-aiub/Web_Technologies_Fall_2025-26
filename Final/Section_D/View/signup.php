@@ -11,19 +11,19 @@ if($isLoggedIn){
 
 $previousValues = $_SESSION["previousValues"] ?? [];
 
-$loginErr = $_SESSION["loginErr"]  ?? "";
+$signupErr = $_SESSION["signupErr"] ?? "";
 
 $errors = $_SESSION["errors"] ?? [];
 
 unset($_SESSION['errors']);
 unset($_SESSION['previousValues']);
-unset( $_SESSION["loginErr"]);
+unset($_SESSION["signupErr"]);
 ?>
 
 <html>
 
 <body>
-    <form method="post" action="..\Controller\LoginValidation.php">
+    <form method="post" action="..\Controller\SignUpValidation.php">
         <table>
             <tr>
                 <td>
@@ -41,14 +41,16 @@ unset( $_SESSION["loginErr"]);
         <tr>
         </tr>
         <tr>
-            <td></td>
-            <td><?php echo $loginErr;?></td>
-        </tr>
+            <td>
+
+            </td>
+            <td><?php echo $signupErr; ?></td>
+</tr>
 
             <tr>
 
             <td>
-                <input type="submit" name="login" value="Login"/>
+                <input type="submit" name="signup" value="Sign Up"/>
             </td>
             </tr>
         </table>
