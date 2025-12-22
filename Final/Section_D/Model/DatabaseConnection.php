@@ -15,8 +15,8 @@ class DatabaseConnection{
         return $connection;
     }
 
-    function signup($connection, $tableName, $email, $password){
-        $sql = "INSERT INTO ".$tableName." (email, password)  VALUES('".$email."', '".$password."')" ;
+    function signup($connection, $tableName, $email, $password, $file){
+        $sql = "INSERT INTO ".$tableName." (email, password, file)  VALUES('".$email."', '".$password."', '".$file."')"; ;
         $result = $connection->query($sql);
         if(!$result){
             die("Failed to signup ". $connection->error);

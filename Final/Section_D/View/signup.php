@@ -23,7 +23,7 @@ unset($_SESSION["signupErr"]);
 <html>
 
 <body>
-    <form method="post" action="..\Controller\SignUpValidation.php">
+    <form method="post" action="..\Controller\SignUpValidation.php" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>
@@ -46,8 +46,11 @@ unset($_SESSION["signupErr"]);
             </td>
             <td><?php echo $signupErr; ?></td>
 </tr>
-
-            <tr>
+<tr>
+    <td>Upload File</td>
+    <td><input type="file" id="uploadFile" name="uploadFile"/> </td>
+</tr>
+<tr>
 
             <td>
                 <input type="submit" name="signup" value="Sign Up"/>
