@@ -15,6 +15,8 @@ $pass = "";
 
 $email = $_POST["email"];
 $pass = $_POST["password"];
+$uploadFile = $_FILES["uploadFile"] ?? null;
+
 echo "Email - $email";
 echo "password - $pass";
 
@@ -51,11 +53,16 @@ if(count($errors) > 0){
     unset($_SESSION['errors']);
     unset($_SESSION['previousValues']);
     unset($_SESSION["signupErr"]);
-
+    $path = "";
+    if($uploadFile){
+        $targetDir = "../uploads/";
+        $path = $targetDir.basename($uploadFile["name"]);
+        $isUploaded = move_uploaded_file($uploadFile["tmp_name"],$path);
+    }
     //Validation Success
     $db = new DatabaseConnection();
     $connection = $db->openConnection();
-    $result = $db->signup($connection, "users", $email, $pass);
+    $result = $db->signup($connection, "users", $email, $pass, $path);
 
     if($result){
         Header("Location: ..\View\login.php");

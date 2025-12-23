@@ -46,10 +46,10 @@ unset($_SESSION["signupErr"]);
             </td>
             <td><?php echo $signupErr; ?></td>
 </tr>
-<tr>
-    <td>Upload File</td>
-    <td><input type="file" id="uploadFile" name="uploadFile"/> </td>
-</tr>
+        <tr>
+            <td>Upload File</td>
+            <td><input type="file" id="uploadFile" name="uploadFile"/> </td>
+        </tr>
 <tr>
 
             <td>

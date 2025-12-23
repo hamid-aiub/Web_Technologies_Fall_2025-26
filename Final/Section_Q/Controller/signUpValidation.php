@@ -39,19 +39,19 @@ Header("Location: ..\View\login.php");
 
 }else{
     $path = "";
-    // if($uploadFile){
-        // $targetDir = "../uploads/";
-        // $targetFile = $targetDir . basename($uploadFile["name"]);
-        // $path = $targetFile;
-        // move_uploaded_file($uploadFile["tmp_name"], $targetFile);
+    if($uploadFile){
+        $targetDir = "../uploads/";
+        $targetFile = $targetDir . basename($uploadFile["name"]);
+        $path = $targetFile;
+        move_uploaded_file($uploadFile["tmp_name"], $targetFile);
         
-        // Header("Location: ..\View\login.php");
-    // }
+        Header("Location: ..\View\login.php");
+    }
 
     // $data = ["email"=> "test@test.com","password"=> 'password'];
     $db = new DatabaseConnection();
     $connection = $db->openConnection();
-    $result = $db->signup($connection, "users", $email, $password,"");
+    $result = $db->signup($connection, "users", $email, $password, $path);
 
     if($result){
         Header("Location: ..\View\login.php");
