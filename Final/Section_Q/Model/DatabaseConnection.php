@@ -26,6 +26,12 @@ class DatabaseConnection{
         return $result;
     }
 
+    function checkExistingUser($connection, $tableName, $email){
+        $sql = "SELECT * FROM ".$tableName." WHERE email='".$email."'";
+        $result = $connection->query($sql);
+        return $result;
+    }
+
     function closeConnection($connection){
         $connection->close();
     }

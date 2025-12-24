@@ -16,6 +16,7 @@ $email = $_SESSION["email"] ??"";
 <body>
     <h1>This is dashboard</h1>
     <h2>Welcome <?php echo $email;?></h2>
+    <!-- <img src="../uploads/blue.png" /> -->
     <a href="..\Controller\logout.php">Logout</a>
 </body>
 </html>

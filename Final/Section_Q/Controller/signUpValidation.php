@@ -41,11 +41,9 @@ Header("Location: ..\View\login.php");
     $path = "";
     if($uploadFile){
         $targetDir = "../uploads/";
-        $targetFile = $targetDir . basename($uploadFile["name"]);
-        $path = $targetFile;
-        move_uploaded_file($uploadFile["tmp_name"], $targetFile);
-        
-        Header("Location: ..\View\login.php");
+        $path = $targetDir . basename($uploadFile["name"]);
+        move_uploaded_file($uploadFile["tmp_name"], $path);
+    
     }
 
     // $data = ["email"=> "test@test.com","password"=> 'password'];

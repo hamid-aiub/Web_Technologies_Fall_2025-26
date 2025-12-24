@@ -19,8 +19,8 @@ unset($_SESSION["LoginErr"]);
 
 
 <html>
-<head>
-  
+    <head>
+<script src="..\Controller\JS\checkEmail.js"> </script>
 </head>
 <body>
 
@@ -33,9 +33,8 @@ unset($_SESSION["LoginErr"]);
     <td>
         Email
     </td>
-    <td>
-        <input type="text" name="email" id="email" value="<?php echo $previousValues["email"] ?? '' ?>"/>
-    </td>
+     <td><input type="text" id="email" name="email" value="<?php echo $previousValues['email'] ?? '' ?>" onkeyup="findExistingEmail()"/> </td>
+    <td id="erroremail"></td>
     <td>
       <?php echo $emailErr;?>
     </td>

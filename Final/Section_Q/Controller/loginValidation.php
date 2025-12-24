@@ -43,7 +43,7 @@ Header("Location: ..\View\login.php");
 
 
     if($result->num_rows  == 1){
-        $_SESSION["email"] = $data["email"];
+        $_SESSION["email"] =$email;
         $_SESSION["isLoggedIn"] =true;
         Header("Location: ..\View\dashboard.php");
 
