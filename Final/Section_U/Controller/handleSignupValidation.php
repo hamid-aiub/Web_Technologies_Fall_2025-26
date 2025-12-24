@@ -1,10 +1,14 @@
 <?php 
 include "../Model/DatabaseConnection.php";
 
+error_reporting(E_ALL);
+ini_set("display_error", 1);
+
 session_start();
 
 $email = $_REQUEST["email"];
 $password = $_REQUEST["password"];
+$fileupload = $_FILES["fileupload"] ?? null;
 
 $errors = [];
 $values = [];
@@ -31,24 +35,27 @@ $values["email"] = $email;
 
 $_SESSION["previousValues"] = $values;
 
-Header("Location: ..\View\login.php");
+Header("Location: ..\View\signup.php");
 
 }else{
+    $path = "";
+    if($fileupload){
+        $targetDir = "../uploads/";
+        $path = $targetDir.basename($fileupload["name"]);
+        $isUploaded = move_uploaded_file($fileupload["tmp_name"], $path);
+        echo "Is Uploaded ....".$isUploaded;
+    }
     $db = new DatabaseConnection();
     $connection = $db->openConnection();
-    $result = $db->signin($connection, "users", $email, $password);
-    if($result->num_rows > 0){
-        Header("Location: ..\View\dashboard.php");
-        $_SESSION["email"] = $email;
-        $_SESSION["isLoggedIn"] = true;
-    }else{
-        $_SESSION["loginErr"] = "Email or password is invalid";
+    $result = $db->signUp($connection, "users", $email, $password, $path);
+    if($result){
         Header("Location: ..\View\login.php");
+      
+    }else{
+        $_SESSION["signUpErr"] = "Failed to signup";
+        Header("Location: ..\View\signup.php");
     }
     
 }
-
-
-
 
 ?>

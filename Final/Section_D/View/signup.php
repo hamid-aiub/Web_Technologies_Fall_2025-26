@@ -21,6 +21,9 @@ unset($_SESSION["signupErr"]);
 ?>
 
 <html>
+    <head>
+<script src="..\Controller\JS\checkEmail.js"> </script>
+</head>
 
 <body>
     <form method="post" action="..\Controller\SignUpValidation.php" enctype="multipart/form-data">
@@ -29,7 +32,8 @@ unset($_SESSION["signupErr"]);
                 <td>
                     Email
                 </td>
-                <td><input type="text" id="email" name="email" value="<?php echo $previousValues['email'] ?? '' ?>"/> </td>
+                <td><input type="text" id="email" name="email" value="<?php echo $previousValues['email'] ?? '' ?>" onkeyup="findExistingEmail()"/> </td>
+                <td id="erroremail"></td>
                 <td><?php echo $errors["email"] ?? ''; ?></td>
             </tr>
 
