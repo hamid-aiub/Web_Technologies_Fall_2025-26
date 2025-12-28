@@ -33,8 +33,8 @@ unset($_SESSION["LoginErr"]);
     <td>
         Email
     </td>
-     <td><input type="text" id="email" name="email" value="<?php echo $previousValues['email'] ?? '' ?>" onkeyup="findExistingEmail()"/> </td>
-    <td id="erroremail"></td>
+     <td><input type="text" id="email" name="email" value="<?php echo $previousValues['email'] ?? '' ?>" onkeyup="CheckEmail()"/> </td>
+    <td id="ajaxResponse"></td>
     <td>
       <?php echo $emailErr;?>
     </td>
