@@ -46,30 +46,7 @@ Header("Location: ..\View\login.php");
         $_SESSION["email"] =$email;
         $_SESSION["isLoggedIn"] =true;
         Header("Location: ..\View\dashboard.php");
-        while($row = $result->fetch_assoc())
-        {
-        echo "Name: " . $row["FullName"]. " - Email: " . $row["Email"]."Username : ".$row["UserName"]."<br>";
-        $_SESSION["Email"]=$email;
-        $_SESSION['Name']= $row["FullName"];
-        $_SESSION["UserName"]=$row["UserName"];
-        $_SESSION['file']=$row["File_Path"];
-        }
-
-        date_default_timezone_set("Asia/Dhaka");
-        $formdata = array(
-            'Name'=> $_SESSION["Name"],
-            'Email'=> $_SESSION['Email'],
-            'Time'=>date('h:i:s'),
-            'Date'=>date("d.m.y"),
-         );
-        
-        
-         $existingdata = file_get_contents('../File/data.json');
-         $tempJSONdata = json_decode($existingdata);
-         $tempJSONdata[] =$formdata;
-         $jsondata = json_encode($tempJSONdata, JSON_PRETTY_PRINT);
-        }
-
+       
     }else{
       $_SESSION["LoginErr"] = "Email or password is incorrect";  
       Header("Location: ..\View\login.php");
