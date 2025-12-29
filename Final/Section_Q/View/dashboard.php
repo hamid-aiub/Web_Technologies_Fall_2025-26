@@ -18,5 +18,6 @@ $email = $_SESSION["email"] ??"";
     <h2>Welcome <?php echo $email;?></h2>
     <!-- <img src="../uploads/blue.png" /> -->
     <a href="..\Controller\logout.php">Logout</a>
+    <a href="users.php">Users</a>
 </body>
 </html>
