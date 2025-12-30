@@ -35,6 +35,19 @@ class DatabaseConnection{
         $result = $connection->query($sql);
         return $result;
     }
+    function getAllUsers($connection, $tableName){
+        $sql = "SELECT * FROM ".$tableName;
+        $result = $connection->query($sql);
+        return $result;
+    }
+
+    function InsertData($connection,$table,$email, $password){
+        $sql = "INSERT INTO users (email,password) VALUES(?,?)";
+        $stmt=$connection->prepare($sql); 
+        $stmt->bind_param("ss",$email,$password);
+        $result = $stmt->execute();
+        return $result;
+    }
 
     function closeConnection($connection){
         $connection->close();

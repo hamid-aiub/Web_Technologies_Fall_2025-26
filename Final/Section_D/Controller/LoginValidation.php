@@ -51,6 +51,8 @@ if(count($errors) > 0){
     if($result->num_rows > 0){
         $_SESSION["isLoggedIn"] = true;
         $_SESSION["email"] = $email;
+        setcookie("isLoggedIn", true, time() + 3600,"/");
+        setcookie("email", json_encode($email), time() + 3600,"/");
 
         Header("Location: ..\View\dashboard.php");
     }else{

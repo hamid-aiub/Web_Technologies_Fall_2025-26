@@ -21,6 +21,9 @@ unset( $_SESSION["loginErr"]);
 ?>
 
 <html>
+    <head>
+  <script src="../Controller/JS/test.js"></script>
+</head>
 
 <body>
     <form method="post" action="..\Controller\LoginValidation.php">
