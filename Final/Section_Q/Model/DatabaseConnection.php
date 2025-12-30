@@ -37,13 +37,13 @@ class DatabaseConnection{
         return $result;
     }
 
-    function InsertData($conn,$table,$email, $password)
+    function InsertData($connection,$table,$email, $password)
     {
         $sql = "INSERT INTO users (email,password) VALUES(?,?)";
-        $stmt=$conn->prepare($sql); 
+        $stmt=$connection->prepare($sql); 
         $stmt->bind_param("ss",$email,$password);
         $result = $stmt->execute();
-        return $check;
+        return $result;
     
     }
 
